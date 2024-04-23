@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>The band</title>
     <link rel="stylesheet" href="./assets/css/style.css" />
+    <link rel="stylesheet" href="./assets/css/responsive.css" />
     <link rel="stylesheet" href="./assets/fonts/themify-icons/themify-icons.css">
     <link rel="icon" type="image/x-icon" href="./assets/img/google_32x32.png">
   </head>
@@ -18,7 +19,7 @@
           <li><a href="#tour">Tour</a></li>
           <li><a href="#contact">Contact</a></li>
           <li>
-            <a href="">
+            <a href="#">
               More
               <i class="nav-arrow-down ti-angle-down"></i>
             </a>
@@ -31,11 +32,15 @@
         </ul>
         <!-- End: Nav -->
 
-        <!-- Begin: Search button -->
+        <!-- Mobile menu button -->
+        <div id="mobile-menu" class="mobile-menu-btn">
+          <i class="menu-icon ti-menu"></i>
+        </div>
+
+        <!-- Search button -->
         <div class="search-btn">
           <i class="search-icon ti-search"></i>
         </div>
-        <!-- End: Search button -->
       </div>
 
       <div id="slider">
@@ -90,7 +95,7 @@
                   <h3 class="place-heading">New York</h3>
                   <p class="place-time">Fri 27 Nov 2016</p>
                   <p class="place-desc">Praesent tincidunt sed tellus ut rutrum sed vitae justo.</p>
-                  <button class="btn s-full-width btn js-buy-ticket">Buy tickets</button>
+                  <button class="btn js-buy-ticket">Buy tickets</button>
                 </div>
               </div>
               <div class="col col-third">
@@ -99,7 +104,7 @@
                   <h3 class="place-heading">Paris</h3>
                   <p class="place-time">Sat 28 Nov 2016</p>
                   <p class="place-desc">Praesent tincidunt sed tellus ut rutrum sed vitae justo.</p>
-                  <button class="btn s-full-width btn js-buy-ticket">Buy tickets</button>
+                  <button class="btn js-buy-ticket">Buy tickets</button>
                 </div>
               </div>
               <div class="col col-third">
@@ -108,7 +113,7 @@
                   <h3 class="place-heading">San Francisco</h3>
                   <p class="place-time">Sun 29 Nov 2016</p>
                   <p class="place-desc">Praesent tincidunt sed tellus ut rutrum sed vitae justo.</p>
-                  <button class="btn s-full-width btn js-buy-ticket">Buy tickets</button>
+                  <button class="btn js-buy-ticket">Buy tickets</button>
                 </div>
               </div>
             </div>
@@ -200,7 +205,32 @@
       </div>
     </div>
 
-    <script></script>
+    <script>
+      var header = document.getElementById('header');
+      var mobileMenu = document.getElementById('mobile-menu');
+      var headerHeight = header.clientHeight;
+      
+      // Open/Close mobile menu
+      mobileMenu.onclick = function() {
+        var isClose = header.clientHeight === headerHeight;
+        if (isClose) {
+          header.style.height = 'auto';
+        } else {
+          header.style.height = null;
+        }
+      }
+
+      // Auto close when click menu
+      var menuItems = document.querySelectorAll('#nav li a[href*="#"]');
+      for (var i = 0; i < menuItems.length; i++) {
+        var menuItem = menuItems[i]
+        
+        menuItem.onclick = function() {
+          header.style.height = null;
+        }
+      }
+
+    </script>
     
     <script>
       const buyBtns = document.querySelectorAll('.js-buy-ticket')
